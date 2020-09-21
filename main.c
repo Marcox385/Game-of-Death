@@ -1,4 +1,4 @@
-// is727272 - Cordero Hernández Marco Ricardo
+// Cordero Hernández Marco Ricardo
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
