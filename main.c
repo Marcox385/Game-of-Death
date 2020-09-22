@@ -47,16 +47,16 @@ int main(){
 		}
 	}
 			
-	printf("ESCENARIO INICIAL\n");
-	printf("Caso 0 en (%d,%d)\n",c0x,c0y);
+	printf("INITIAL CASE\n");
+	printf("Patient 0 in (%d,%d)\n",c0x,c0y);
 	show(celdas);
 	
 	char dec;
-	printf("\n0 para continuar, cualquier otro para salir");
+	printf("\n0 to continue, other to exit");
 	
 	int cont_dias = 1;
 	while(1){
-		printf("\n\nD%ca %d -> ",161,cont_dias);
+		printf("\n\nDay %d -> ",cont_dias);
 		scanf("%d",&dec);
 		
 		if(dec == 0){
@@ -64,7 +64,7 @@ int main(){
 			show(celdas);
 			cont_dias++;
 		} else {
-			printf("\n\n ------ QU%cDATE EN CASA ------ \n\n",144);
+			printf("\n\n ------ STAY AT HOME ------ \n\n",144);
 			return 0;
 		}
 	}
@@ -154,27 +154,27 @@ int move(CELDA celdas[size][size],int row, int col){
 	while(avail == 0){
 		new_pos = rand()%8;
 		switch(new_pos){
-			case 0: // izquierda superior
+			case 0: // upper left
 				if(row > 0 && col > 0){
 					avail = (celdas[row-1][col-1].celstat) ? 0 : 1;
 				}
 				break;
-			case 1:	// centro superior
+			case 1:	// upper centre
 				if(row > 0){
 					avail = (celdas[row-1][col].celstat) ? 0 : 1;
 				}
 				break;
-			case 2:	// derecha superior
+			case 2:	// upper right
 				if(row > 0 && col < size){
 					avail = (celdas[row-1][col+1].celstat) ? 0 : 1;
 				}
 				break;
-			case 3:	// izquierda centro
+			case 3:	// left centre
 				if(row > 0){
 					avail = (celdas[row][col-1].celstat) ? 0 : 1;
 				}
 				break;
-			case 4:	// derecha centro
+			case 4:	// right centre
 				if(row < size){
 					avail = (celdas[row][col+1].celstat) ? 0 : 1;
 				}
