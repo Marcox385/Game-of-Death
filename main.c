@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #define size 50
+#define TEST printf("TEST\n\n");
 
 typedef struct {
 	unsigned char stat : 3;
