@@ -6,12 +6,12 @@
 
 typedef struct {
 	unsigned char estado : 3;
-	// 0 -> Sano; 1 -> Enfermo; 2 -> Recuperado; 4 -> Vacio
+	// 0 -> Healthy; 1 -> Sick; 2 -> Recovered; 4 -> Empty
 } PERSSTAT;
 
 typedef struct {
-	unsigned int id; 							// sin asignación de bits porque puedes generarse muchos
-	unsigned short dias 		: 10;		// hasta 3 años
+	unsigned int id; 							// With no bit assignment because it can generate too many days
+	unsigned short dias 		: 10;		// Up to 3 years
 	unsigned char edad			: 	7;
 	unsigned char cubrebocas: 	1;
 	PERSSTAT status;
@@ -268,7 +268,7 @@ void swap_val(CELDA celdas[size][size],CELDA celdA,int row, int col, int new_pos
 void check_replace(CELDA celdas[size][size]){
 	int probabilidad, n_pos;
 	
-	// Mueve las celdas modificando el arreglo en tiempo real
+	// Swaps the values in real time
 	for(int i = 0; i < size; i++){
 		for(int j = 0; j < size; j++){
 			if(celdas[i][j].celstat){
@@ -280,7 +280,7 @@ void check_replace(CELDA celdas[size][size]){
 	
 	CELDA holder[size][size];
 	
-	for(int i = 0; i < size; i++){ // Copia el contenido original a un conteneder temporal para no afectar en tiempo real al original
+	for(int i = 0; i < size; i++){ // Since we dont want to affect the original array in real time, this copies the original content to a temporal container
 		for(int j = 0; j < size; j++){
 			holder[i][j].celstat = celdas[i][j].celstat;
 			holder[i][j].sujeto.id = celdas[i][j].sujeto.id;
