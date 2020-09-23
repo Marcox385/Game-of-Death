@@ -10,7 +10,7 @@ typedef struct {
 } PERSSTAT;
 
 typedef struct {
-	unsigned int id; 							// With no bit assignment because it can generate too many days
+	unsigned int id; 							// With no bit assignment because it can generate too many ids
 	unsigned short dias 		: 10;		// Up to 3 years
 	unsigned char edad			: 	7;
 	unsigned char cubrebocas: 	1;
@@ -280,7 +280,7 @@ void check_replace(CELDA celdas[size][size]){
 	
 	CELDA holder[size][size];
 	
-	for(int i = 0; i < size; i++){ // Since we dont want to affect the original array in real time, this copies the original content to a temporal container
+	for(int i = 0; i < size; i++){ // Since we don't want to affect the original array in real time, this copies the original content to a temporal container
 		for(int j = 0; j < size; j++){
 			holder[i][j].celstat = celdas[i][j].celstat;
 			holder[i][j].sujeto.id = celdas[i][j].sujeto.id;
@@ -297,7 +297,7 @@ void check_replace(CELDA celdas[size][size]){
 				if(celdas[i][j].sujeto.status.estado == 0){
 					probabilidad = rand()%101;
 					
-					if(i > 0 && j > 0 && celdas[i-1][j-1].sujeto.status.estado == 1){	// Casilla superior izquierda
+					if(i > 0 && j > 0 && celdas[i-1][j-1].sujeto.status.estado == 1){	// Upper left
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i-1][j-1].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i-1][j-1].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -307,7 +307,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}
 					
-					if(i > 0 && celdas[i-1][j].sujeto.status.estado == 1){	// Casilla superior central
+					if(i > 0 && celdas[i-1][j].sujeto.status.estado == 1){	// Upper centre
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i-1][j].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i-1][j].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -317,7 +317,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}	
 					
-					if(i > 0 && j < size && celdas[i-1][j+1].sujeto.status.estado == 1){	// Casilla superior derecha
+					if(i > 0 && j < size && celdas[i-1][j+1].sujeto.status.estado == 1){	// Upper right
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i-1][j+1].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i-1][j+1].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -327,7 +327,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}
 					
-					if(j > 0 && celdas[i][j-1].sujeto.status.estado == 1){	// Casilla central izquierda
+					if(j > 0 && celdas[i][j-1].sujeto.status.estado == 1){	// Centre left
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i][j-1].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i][j-1].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -337,7 +337,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}	
 						
-					if(j < size && celdas[i][j+1].sujeto.status.estado == 1){	// Casilla central derecha
+					if(j < size && celdas[i][j+1].sujeto.status.estado == 1){	// Centre right
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i][j+1].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i][j+1].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -347,7 +347,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}	
 						
-					if(i < size && j > 0 && celdas[i+1][j-1].sujeto.status.estado == 1){	// Casilla inferior izquierda
+					if(i < size && j > 0 && celdas[i+1][j-1].sujeto.status.estado == 1){	// Lower left
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i+1][j-1].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i+1][j-1].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -357,7 +357,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}	
 					
-					if(i < size && celdas[i+1][j].sujeto.status.estado == 1){	// Casilla inferior central
+					if(i < size && celdas[i+1][j].sujeto.status.estado == 1){	// Lower centre
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i+1][j].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i+1][j].sujeto.cubrebocas == 1 && probabilidad <= 20){
@@ -367,7 +367,7 @@ void check_replace(CELDA celdas[size][size]){
 						}
 					}	
 						
-					if(i < size && j < size && celdas[i+1][j+1].sujeto.status.estado == 1){	// Casilla inferior derecha
+					if(i < size && j < size && celdas[i+1][j+1].sujeto.status.estado == 1){	// Lower right
 						if(celdas[i][j].sujeto.cubrebocas == 0 && celdas[i+1][j+1].sujeto.cubrebocas == 0 && probabilidad <= 60){
 							holder[i][j].sujeto.status.estado = 1;	
 						} else if(celdas[i][j].sujeto.cubrebocas == 1 || celdas[i+1][j+1].sujeto.cubrebocas == 1 && probabilidad <= 20){
